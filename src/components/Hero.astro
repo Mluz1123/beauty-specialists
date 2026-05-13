@@ -1,0 +1,158 @@
+---
+import { siteConfig } from '../data/config';
+---
+
+<section
+  id="inicio"
+  class="relative min-h-screen flex items-end md:items-center overflow-hidden"
+  style="background-color: #1A1A1A;"
+  aria-label="Sección principal"
+>
+  <!-- Background image -->
+  <div class="absolute inset-0 z-0">
+    <img
+      src="/img/hero_bride.png"
+      alt="Maquillaje profesional para novias - Beauty Specialists"
+      class="hero-bg w-full h-full object-cover"
+      width="1920"
+      height="1080"
+      loading="eager"
+      fetchpriority="high"
+    />
+    <!-- Mobile gradient: transparent top → dark bottom -->
+    <div class="hero-overlay-mobile absolute inset-0 md:hidden"></div>
+    <!-- Desktop gradient: dark left → transparent right -->
+    <div class="hero-overlay-desktop absolute inset-0 hidden md:block"></div>
+  </div>
+
+  <!-- Content -->
+  <div class="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-12 pt-24 pb-14 md:pb-20 md:pt-32">
+    <div class="max-w-lg hero-content">
+
+      <!-- Script label -->
+      <span
+        class="block text-3xl text-accent mb-3"
+        style="font-family: var(--font-script); opacity: 0; animation: fade-up 0.8s 0.2s ease forwards;"
+      >
+        Cámbiate a Ti Misma
+      </span>
+
+      <!-- Main heading -->
+      <h1
+        class="leading-none mb-5"
+        style="font-family: var(--font-heading); opacity: 0; animation: fade-up 0.8s 0.4s ease forwards;"
+      >
+        <span class="block text-6xl md:text-8xl font-bold text-white">Belleza</span>
+        <em class="block text-6xl md:text-8xl font-bold text-accent italic">Sin Límites</em>
+      </h1>
+
+      <!-- Separator + location -->
+      <div
+        class="flex items-center gap-3 mb-5"
+        style="opacity: 0; animation: fade-up 0.8s 0.55s ease forwards;"
+      >
+        <span class="block w-8 h-px bg-accent flex-shrink-0"></span>
+        <span class="text-xs tracking-[0.22em] uppercase text-white/65 whitespace-nowrap">
+          Beauty Specialists · Cota
+        </span>
+      </div>
+
+      <!-- Description -->
+      <p
+        class="text-white/80 text-base leading-relaxed mb-8 max-w-sm"
+        style="opacity: 0; animation: fade-up 0.8s 0.7s ease forwards;"
+      >
+        Somos un salón de belleza especializado en maquillaje para novias y eventos, peinados para quinceañeras y manicure semipermanente. Tu mejor versión nos inspira cada día.
+      </p>
+
+      <!-- CTAs -->
+      <div
+        class="flex flex-col items-stretch sm:flex-row sm:items-start gap-3"
+        style="opacity: 0; animation: fade-up 0.8s 0.85s ease forwards;"
+      >
+        <a
+          href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hola,%20me%20gustar%C3%ADa%20agendar%20una%20cita`}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn-primary justify-center sm:justify-start"
+          onclick="gtag('event','whatsapp_click',{event_category:'CTA',event_label:'Hero'});fbq('track','Contact');"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+          </svg>
+          Agendar Ahora
+        </a>
+        <a href="#servicios" class="btn-outline justify-center sm:justify-start">
+          Ver Servicios
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 5v14M5 12l7 7 7-7"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <a
+    href="#nosotros"
+    class="scroll-indicator absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2"
+    aria-label="Explorar más"
+  >
+    <span class="text-xs tracking-[0.3em] uppercase text-white/50">Explorar</span>
+    <span class="scroll-line block w-px h-10"></span>
+  </a>
+</section>
+
+<style>
+  /* Image: center-top on mobile to show face, right-center on desktop */
+  .hero-bg {
+    object-position: center 15%;
+  }
+  @media (min-width: 768px) {
+    .hero-bg {
+      object-position: 65% center;
+    }
+  }
+
+  /* Mobile overlay: vertical fade + rounded right-to-left vignette */
+  .hero-overlay-mobile {
+    background:
+      radial-gradient(ellipse 90% 70% at 105% 25%, rgba(0,0,0,0.72) 0%, transparent 65%),
+      linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.05) 0%,
+        rgba(0,0,0,0.10) 30%,
+        rgba(0,0,0,0.80) 55%,
+        #1A1A1A 100%
+      );
+  }
+
+  /* Desktop overlay: dark left → transparent right */
+  .hero-overlay-desktop {
+    background: linear-gradient(
+      to right,
+      rgba(0,0,0,0.90) 0%,
+      rgba(0,0,0,0.80) 30%,
+      rgba(0,0,0,0.45) 55%,
+      rgba(0,0,0,0.10) 100%
+    );
+  }
+
+  /* Scroll line */
+  .scroll-line {
+    background: linear-gradient(to bottom, rgba(255,255,255,0.15) 0%, var(--color-accent) 100%);
+    box-shadow: 0 4px 12px 2px color-mix(in srgb, var(--color-accent) 60%, transparent);
+    animation: scroll-bounce 1.6s ease-in-out infinite;
+    transform-origin: top center;
+  }
+
+  @keyframes scroll-bounce {
+    0%, 100% { transform: scaleY(1) translateY(0); opacity: 0.7; }
+    50%       { transform: scaleY(1.15) translateY(4px); opacity: 1; }
+  }
+
+  .scroll-indicator:hover .scroll-line {
+    opacity: 1;
+    box-shadow: 0 6px 18px 4px color-mix(in srgb, var(--color-accent) 80%, transparent);
+  }
+</style>

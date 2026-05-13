@@ -1,0 +1,93 @@
+---
+interface Benefit {
+  icon: string;
+  title: string;
+  description: string;
+}
+
+const benefits: Benefit[] = [
+  {
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`,
+    title: 'Maquillaje de Larga Duración',
+    description:
+      'Técnica de "piel blindada" que garantiza tu maquillaje impecable desde la ceremonia hasta el último baile. Sin retoques, sin preocupaciones.',
+  },
+  {
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>`,
+    title: 'Atención Personalizada',
+    description:
+      'Cada look es único. Entendemos tu estilo, tu vestido y tu personalidad para crear un resultado que supere tus expectativas.',
+  },
+  {
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>`,
+    title: 'Preparación de Piel Premium',
+    description:
+      'Tratamiento con tecnología LED, esferas de hielo y mascarilla hidroplástica antes de cada maquillaje para una base perfecta y luminosa.',
+  },
+  {
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>`,
+    title: 'Experiencia Comprobada',
+    description:
+      'Más de 8 años especializados en bodas, quinceañeras y eventos sociales en Colombia. Más de 500 novias felices respaldan nuestro trabajo.',
+  },
+];
+---
+
+<section
+  id="beneficios"
+  class="py-24 overflow-hidden"
+  aria-labelledby="benefits-heading"
+>
+  <div class="max-w-7xl mx-auto px-6">
+
+    <!-- Heading -->
+    <div class="text-center mb-16 reveal">
+      <span class="section-label" aria-hidden="true">¿Por qué elegirnos?</span>
+      <h2 id="benefits-heading" class="section-title">
+        La diferencia<br />
+        <em
+          style="font-family: var(--font-heading);"
+          class="font-normal text-accent not-italic"
+        >
+          Beauty Specialists
+        </em>
+      </h2>
+      <div class="section-divider mx-auto"></div>
+    </div>
+
+    <!-- Benefits grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      {benefits.map((benefit, i) => (
+        <div
+          class={`reveal stagger-${i + 1} text-center group`}
+        >
+          <!-- Icon circle -->
+          <div
+            class="w-16 h-16 rounded-full mx-auto mb-5 flex items-center justify-center text-accent transition-all duration-300 group-hover:scale-110"
+            style="background-color: rgba(232,168,154,0.1); border: 1px solid rgba(232,168,154,0.2);"
+          >
+            <Fragment set:html={benefit.icon} />
+          </div>
+
+          <!-- Content -->
+          <h3
+            style="font-family: var(--font-heading);"
+            class="text-lg font-semibold text-white mb-3"
+          >
+            {benefit.title}
+          </h3>
+          <p class="text-sm text-text-muted leading-relaxed">
+            {benefit.description}
+          </p>
+        </div>
+      ))}
+    </div>
+
+    <!-- Decorative divider -->
+    <div
+      class="mt-20 h-px max-w-2xl mx-auto reveal"
+      style="background: linear-gradient(90deg, transparent, #3A3A3A, rgba(232,168,154,0.4), #3A3A3A, transparent);"
+      aria-hidden="true"
+    ></div>
+  </div>
+</section>

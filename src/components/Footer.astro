@@ -1,0 +1,165 @@
+---
+import { siteConfig } from '../data/config';
+
+const footerLinks = [
+  { label: 'Inicio', href: '#inicio' },
+  { label: 'Nosotros', href: '#nosotros' },
+  { label: 'Servicios', href: '#servicios' },
+  { label: 'Precios', href: '#precios' },
+  { label: 'FAQ', href: '#faq' },
+  { label: 'Contacto', href: '#contacto' },
+];
+
+const services = [
+  'Maquillaje de Novia',
+  'Plan Quinceañera',
+  'Maquillaje Social',
+  'Preparación de Piel',
+  'Peinados',
+  'Uñas & Spa',
+];
+---
+
+<footer
+  style="background-color: #111111; border-top: 1px solid #2B2B2B;"
+  role="contentinfo"
+>
+  <div class="max-w-7xl mx-auto px-6 py-16">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+
+      <!-- Brand column -->
+      <div class="md:col-span-2">
+        <!-- Logo -->
+        <div class="mb-5">
+          <span
+            style="font-family: var(--font-script);"
+            class="block text-4xl text-accent leading-none"
+          >
+            Beauty
+          </span>
+          <span
+            style="font-family: var(--font-heading);"
+            class="block text-xs tracking-[0.3em] uppercase text-white/50 -mt-1"
+          >
+            Specialists
+          </span>
+        </div>
+
+        <p class="text-sm text-text-muted leading-relaxed mb-6 max-w-xs">
+          Estilista y maquilladora profesional especializada en novias, quinceañeras
+          y maquillaje social en Cota, Cundinamarca.
+        </p>
+
+        <!-- Social icons -->
+        <div class="flex gap-3">
+          <a
+            href={siteConfig.social.instagramUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram: Beauty Specialists"
+            class="w-9 h-9 rounded-full flex items-center justify-center text-white/50 hover:text-accent transition-all duration-200 hover:scale-110"
+            style="border: 1px solid #3A3A3A;"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+            </svg>
+          </a>
+          <a
+            href={siteConfig.social.instagramNoviasUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram: Beauty Specialists Novias"
+            class="w-9 h-9 rounded-full flex items-center justify-center text-white/50 hover:text-accent transition-all duration-200 hover:scale-110"
+            style="border: 1px solid #3A3A3A;"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+            </svg>
+          </a>
+          <a
+            href={`https://wa.me/${siteConfig.contact.whatsapp}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="WhatsApp: Beauty Specialists"
+            class="w-9 h-9 rounded-full flex items-center justify-center text-white/50 hover:text-accent transition-all duration-200 hover:scale-110"
+            style="border: 1px solid #3A3A3A;"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+              <path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.533 5.858L.057 23.943a.5.5 0 0 0 .61.61l6.085-1.476A11.944 11.944 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.89 0-3.66-.496-5.194-1.363l-.37-.213-3.836.93.948-3.836-.228-.38A9.96 9.96 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Navigation -->
+      <nav aria-label="Navegación del footer">
+        <h3
+          style="font-family: var(--font-heading);"
+          class="text-xs font-semibold uppercase tracking-widest text-white/50 mb-5"
+        >
+          Navegación
+        </h3>
+        <ul class="space-y-3 list-none m-0 p-0">
+          {footerLinks.map((link) => (
+            <li>
+              <a
+                href={link.href}
+                class="text-sm text-text-muted hover:text-accent transition-colors duration-200"
+              >
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      <!-- Services -->
+      <div>
+        <h3
+          style="font-family: var(--font-heading);"
+          class="text-xs font-semibold uppercase tracking-widest text-white/50 mb-5"
+        >
+          Servicios
+        </h3>
+        <ul class="space-y-3 list-none m-0 p-0">
+          {services.map((s) => (
+            <li>
+              <a
+                href="#servicios"
+                class="text-sm text-text-muted hover:text-accent transition-colors duration-200"
+              >
+                {s}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+    <!-- Divider -->
+    <div class="h-px mb-8" style="background: #2B2B2B;"></div>
+
+    <!-- Bottom bar -->
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-text-muted">
+      <p>
+        © {new Date().getFullYear()} <span class="text-accent">{siteConfig.name}</span>.
+        Todos los derechos reservados.
+      </p>
+      <address class="not-italic flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 text-center sm:text-left">
+        <span>{siteConfig.location.full}</span>
+        <span class="hidden sm:inline text-border" aria-hidden="true">·</span>
+        <a
+          href={`tel:${siteConfig.contact.phone}`}
+          class="hover:text-accent transition-colors duration-200"
+        >
+          {siteConfig.contact.phone}
+        </a>
+      </address>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,151 @@
+---
+import { testimonials } from '../data/testimonials';
+---
+
+<section
+  id="testimonios"
+  class="py-24 overflow-hidden"
+  style="background-color: #1E1E1E;"
+  aria-labelledby="testimonials-heading"
+>
+  <div class="max-w-7xl mx-auto px-6 mb-12">
+    <div class="text-center reveal">
+      <span class="section-label" aria-hidden="true">Lo que dicen ellas</span>
+      <h2 id="testimonials-heading" class="section-title">
+        Testimonios
+      </h2>
+      <div class="section-divider mx-auto"></div>
+      <p class="text-text-muted max-w-xl mx-auto mt-4">
+        La felicidad de nuestras clientas es nuestra mayor satisfacción.
+      </p>
+    </div>
+  </div>
+
+  <!-- Carousel container -->
+  <div
+    id="carousel-container"
+    class="overflow-hidden relative"
+    role="region"
+    aria-label="Carrusel de testimonios"
+    aria-roledescription="carrusel"
+  >
+    <!-- Fade edges -->
+    <div
+      class="absolute left-0 top-0 bottom-0 w-20 z-10 pointer-events-none"
+      style="background: linear-gradient(to right, #1E1E1E, transparent);"
+      aria-hidden="true"
+    ></div>
+    <div
+      class="absolute right-0 top-0 bottom-0 w-20 z-10 pointer-events-none"
+      style="background: linear-gradient(to left, #1E1E1E, transparent);"
+      aria-hidden="true"
+    ></div>
+
+    <!-- Single track (original + duplicate for seamless loop) -->
+    <div id="carousel-track" class="carousel-track gap-6 px-4" style="padding-bottom: 1rem;">
+      <!-- Original set -->
+      {testimonials.map((t) => (
+        <article
+          class="testimonial-card flex-shrink-0 w-80 rounded-xl p-6 transition-all duration-300"
+          style="background-color: #2B2B2B; border: 1px solid #3A3A3A;"
+          aria-label={`Testimonio de ${t.name}`}
+        >
+          <!-- Stars -->
+          <div class="flex gap-1 mb-3" aria-label={`${t.rating} de 5 estrellas`}>
+            {Array.from({ length: t.rating }).map(() => (
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#E8A89A" aria-hidden="true">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+              </svg>
+            ))}
+          </div>
+
+          <!-- Review -->
+          <blockquote>
+            <p class="text-sm text-white/80 leading-relaxed mb-5 italic">
+              "{t.review}"
+            </p>
+          </blockquote>
+
+          <!-- Author -->
+          <footer class="flex items-center gap-3">
+            <div
+              class="w-10 h-10 rounded-full flex-shrink-0 flex items-center justify-center text-sm font-semibold"
+              style="background: linear-gradient(135deg, #E8A89A, #C98070); color: #1A1A1A;"
+              aria-hidden="true"
+            >
+              {t.name.charAt(0)}
+            </div>
+            <div>
+              <p class="text-sm font-semibold text-white">{t.name}</p>
+              <p class="text-xs text-accent">{t.service}</p>
+            </div>
+          </footer>
+        </article>
+      ))}
+
+      <!-- Duplicate set for seamless loop -->
+      {testimonials.map((t) => (
+        <article
+          class="testimonial-card flex-shrink-0 w-80 rounded-xl p-6 transition-all duration-300"
+          style="background-color: #2B2B2B; border: 1px solid #3A3A3A;"
+          aria-hidden="true"
+        >
+          <div class="flex gap-1 mb-3">
+            {Array.from({ length: t.rating }).map(() => (
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#E8A89A" aria-hidden="true">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+              </svg>
+            ))}
+          </div>
+          <blockquote>
+            <p class="text-sm text-white/80 leading-relaxed mb-5 italic">"{t.review}"</p>
+          </blockquote>
+          <footer class="flex items-center gap-3">
+            <div
+              class="w-10 h-10 rounded-full flex-shrink-0 flex items-center justify-center text-sm font-semibold"
+              style="background: linear-gradient(135deg, #E8A89A, #C98070); color: #1A1A1A;"
+              aria-hidden="true"
+            >
+              {t.name.charAt(0)}
+            </div>
+            <div>
+              <p class="text-sm font-semibold text-white">{t.name}</p>
+              <p class="text-xs text-accent">{t.service}</p>
+            </div>
+          </footer>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .testimonial-card:hover {
+    border-color: rgba(232, 168, 154, 0.4);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  }
+</style>
+
+<script>
+  const container = document.getElementById('carousel-container') as HTMLElement;
+  const track = document.getElementById('carousel-track') as HTMLElement;
+
+  container.addEventListener('mouseenter', () => {
+    track.classList.add('paused');
+  });
+
+  container.addEventListener('mouseleave', () => {
+    track.classList.remove('paused');
+  });
+
+  // Touch support
+  let touchStartX = 0;
+  container.addEventListener('touchstart', (e) => {
+    touchStartX = e.touches[0].clientX;
+    track.classList.add('paused');
+  }, { passive: true });
+
+  container.addEventListener('touchend', () => {
+    track.classList.remove('paused');
+  }, { passive: true });
+</script>

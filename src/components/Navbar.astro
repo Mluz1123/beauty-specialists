@@ -1,0 +1,192 @@
+---
+import { siteConfig } from '../data/config';
+
+const navLinks = [
+  { label: 'Inicio', href: '#inicio' },
+  { label: 'Nosotros', href: '#nosotros' },
+  { label: 'Servicios', href: '#servicios' },
+  { label: 'Galería', href: '#galeria' },
+  { label: 'Contacto', href: '#contacto' },
+];
+---
+
+<header
+  id="navbar"
+  class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+  role="banner"
+>
+  <nav
+    class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between"
+    aria-label="Navegación principal"
+  >
+    <!-- Logo -->
+    <a
+      href="#inicio"
+      class="flex flex-col leading-none group"
+      aria-label={`${siteConfig.name} - Inicio`}
+    >
+      <span
+        style="font-family: var(--font-script);"
+        class="text-3xl text-accent transition-opacity duration-200 group-hover:opacity-80"
+      >
+        Beauty
+      </span>
+      <span
+        style="font-family: var(--font-heading);"
+        class="text-xs tracking-[0.3em] uppercase text-white/70 -mt-1"
+      >
+        Specialists
+      </span>
+    </a>
+
+    <!-- Desktop nav -->
+    <ul class="hidden md:flex items-center gap-8 list-none m-0 p-0">
+      {navLinks.map((link) => (
+        <li>
+          <a
+            href={link.href}
+            class="text-sm text-white/70 hover:text-accent tracking-wide transition-colors duration-200 relative after:absolute after:bottom-[-3px] after:left-0 after:w-0 after:h-px after:bg-accent after:transition-all after:duration-300 hover:after:w-full"
+          >
+            {link.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <!-- Right side -->
+    <div class="hidden md:flex items-center gap-4">
+      <a
+        href={siteConfig.social.instagramUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Seguir en Instagram"
+        class="text-white/60 hover:text-accent transition-colors duration-200"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+          <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+        </svg>
+      </a>
+      <a
+        href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hola,%20me%20gustar%C3%ADa%20agendar%20una%20cita`}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn-primary text-xs py-2 px-4"
+        onclick="gtag('event','whatsapp_click',{event_category:'CTA',event_label:'Navbar'});fbq('track','Contact');"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+        </svg>
+        Agendar
+      </a>
+    </div>
+
+    <!-- Hamburger -->
+    <button
+      id="menu-toggle"
+      class="md:hidden flex flex-col items-end gap-[6px] p-2 -mr-2 focus-visible:outline-accent"
+      aria-label="Abrir menú"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+    >
+      <span class="hamburger-line block w-6 h-px bg-white transition-all duration-300"></span>
+      <span class="hamburger-line block w-6 h-px bg-white transition-all duration-300"></span>
+      <span class="hamburger-line block w-4 h-px transition-all duration-300" style="background-color: var(--color-accent);"></span>
+    </button>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div
+    id="mobile-menu"
+    class="md:hidden hidden border-t border-white/10"
+    style="background: rgba(15,15,15,0.75); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Menú de navegación"
+  >
+    <ul class="flex flex-col py-4 px-6 gap-1 list-none m-0 p-0 px-6 py-4">
+      {navLinks.map((link) => (
+        <li>
+          <a
+            href={link.href}
+            class="mobile-nav-link block py-3 text-white/80 hover:text-accent border-b border-border/50 text-sm tracking-wide transition-colors duration-200"
+          >
+            {link.label}
+          </a>
+        </li>
+      ))}
+      <li class="pt-4">
+        <a
+          href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hola,%20me%20gustar%C3%ADa%20agendar%20una%20cita`}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn-primary w-full justify-center text-xs"
+        >
+          Agenda tu cita por WhatsApp
+        </a>
+      </li>
+    </ul>
+  </div>
+</header>
+
+<script>
+  const navbar = document.getElementById('navbar') as HTMLElement;
+  const toggle = document.getElementById('menu-toggle') as HTMLButtonElement;
+  const menu = document.getElementById('mobile-menu') as HTMLElement;
+  const lines = toggle.querySelectorAll<HTMLElement>('.hamburger-line');
+
+  // Scroll background
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(() => {
+        if (window.scrollY > 60) {
+          navbar.style.background = 'rgba(26,26,26,0.97)';
+          navbar.style.borderBottom = '1px solid #3A3A3A';
+          navbar.style.backdropFilter = 'blur(12px)';
+        } else {
+          navbar.style.background = 'transparent';
+          navbar.style.borderBottom = 'none';
+          navbar.style.backdropFilter = 'none';
+        }
+        ticking = false;
+      });
+      ticking = true;
+    }
+  });
+
+  // Hamburger toggle
+  let isOpen = false;
+  toggle.addEventListener('click', () => {
+    isOpen = !isOpen;
+    menu.classList.toggle('hidden', !isOpen);
+    toggle.setAttribute('aria-expanded', String(isOpen));
+    toggle.setAttribute('aria-label', isOpen ? 'Cerrar menú' : 'Abrir menú');
+    // Animate lines (3-line X)
+    if (isOpen) {
+      lines[0].style.transform = 'translateY(7.5px) rotate(45deg)';
+      lines[1].style.opacity = '0';
+      lines[2].style.transform = 'translateY(-7.5px) rotate(-45deg)';
+      lines[2].style.width = '24px';
+    } else {
+      lines[0].style.transform = '';
+      lines[1].style.opacity = '';
+      lines[2].style.transform = '';
+      lines[2].style.width = '';
+    }
+  });
+
+  // Close menu on link click
+  menu.querySelectorAll('.mobile-nav-link').forEach((link) => {
+    link.addEventListener('click', () => {
+      isOpen = false;
+      menu.classList.add('hidden');
+      toggle.setAttribute('aria-expanded', 'false');
+      lines[0].style.transform = '';
+      lines[1].style.opacity = '';
+      lines[2].style.transform = '';
+      lines[2].style.width = '';
+    });
+  });
+</script>

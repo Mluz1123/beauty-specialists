@@ -1,0 +1,283 @@
+---
+import { siteConfig } from '../data/config';
+
+const serviceOptions = [
+  'Plan de Novias',
+  'Plan Quinceañera',
+  'Maquillaje Social',
+  'Preparación de Piel',
+  'Peinados',
+  'Uñas & Spa',
+  'Otro',
+];
+---
+
+<section
+  id="contacto"
+  class="py-24"
+  style="background-color: #1A1A1A;"
+  aria-labelledby="contact-heading"
+>
+  <div class="max-w-2xl mx-auto px-6">
+
+    <!-- Heading -->
+    <div class="text-center mb-14 reveal">
+      <span class="section-label" aria-hidden="true">Hablemos</span>
+      <h2 id="contact-heading" class="section-title">
+        Contáctanos
+      </h2>
+      <div class="section-divider mx-auto"></div>
+      <p class="text-text-muted mt-4">
+        Cuéntanos sobre tu evento y te responderemos a la brevedad.
+      </p>
+    </div>
+
+    <!-- Form -->
+    <div class="reveal stagger-2">
+      <form
+        id="contact-form"
+        class="space-y-5"
+        novalidate
+        aria-label="Formulario de contacto"
+      >
+        <!-- Honeypot anti-spam -->
+        <div class="absolute left-[-9999px] top-[-9999px]" aria-hidden="true">
+          <label for="website">Sitio web</label>
+          <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" />
+        </div>
+
+        <!-- Name + Phone row -->
+        <div class="grid sm:grid-cols-2 gap-5">
+          <div>
+            <label for="name" class="block text-sm text-white/70 mb-2">
+              Nombre completo <span class="text-accent" aria-label="campo requerido">*</span>
+            </label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              required
+              minlength="2"
+              maxlength="80"
+              autocomplete="name"
+              placeholder="Tu nombre"
+              class="form-input"
+              aria-required="true"
+            />
+          </div>
+          <div>
+            <label for="phone" class="block text-sm text-white/70 mb-2">
+              Teléfono <span class="text-accent" aria-label="campo requerido">*</span>
+            </label>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              required
+              pattern="[+]?[0-9\s\-]{7,20}"
+              autocomplete="tel"
+              placeholder="+57 300 000 0000"
+              class="form-input"
+              aria-required="true"
+            />
+          </div>
+        </div>
+
+        <!-- Email -->
+        <div>
+          <label for="email" class="block text-sm text-white/70 mb-2">
+            Correo electrónico <span class="text-accent" aria-label="campo requerido">*</span>
+          </label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            required
+            autocomplete="email"
+            placeholder="tucorreo@ejemplo.com"
+            class="form-input"
+            aria-required="true"
+          />
+        </div>
+
+        <!-- Service -->
+        <div>
+          <label for="service" class="block text-sm text-white/70 mb-2">
+            Servicio de interés
+          </label>
+          <select
+            id="service"
+            name="service"
+            class="form-input"
+          >
+            <option value="">Selecciona un servicio</option>
+            {serviceOptions.map((opt) => (
+              <option value={opt}>{opt}</option>
+            ))}
+          </select>
+        </div>
+
+        <!-- Message -->
+        <div>
+          <label for="message" class="block text-sm text-white/70 mb-2">
+            Mensaje <span class="text-accent" aria-label="campo requerido">*</span>
+          </label>
+          <textarea
+            id="message"
+            name="message"
+            required
+            minlength="10"
+            maxlength="1000"
+            rows="4"
+            placeholder="Cuéntanos sobre tu evento, fecha, y lo que necesitas..."
+            class="form-input resize-none"
+            aria-required="true"
+          ></textarea>
+        </div>
+
+        <!-- Submit -->
+        <button
+          type="submit"
+          class="btn-primary w-full justify-center text-sm"
+          id="submit-btn"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <line x1="22" y1="2" x2="11" y2="13"/>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+          </svg>
+          Enviar mensaje
+        </button>
+
+        <!-- Status messages -->
+        <div
+          id="form-success"
+          class="hidden rounded-lg p-4 text-sm text-center"
+          style="background: rgba(232,168,154,0.1); border: 1px solid rgba(232,168,154,0.3); color: #E8A89A;"
+          role="alert"
+          aria-live="polite"
+        >
+          ¡Gracias! Tu mensaje fue enviado. Te contactaremos pronto.
+        </div>
+        <div
+          id="form-error"
+          class="hidden rounded-lg p-4 text-sm text-center"
+          style="background: rgba(220,38,38,0.1); border: 1px solid rgba(220,38,38,0.3); color: #f87171;"
+          role="alert"
+          aria-live="polite"
+        >
+          Hubo un error. Por favor escríbenos directamente por WhatsApp.
+        </div>
+      </form>
+
+      <!-- Alternative contacts -->
+      <div class="flex flex-col sm:flex-row gap-4 mt-8 pt-8" style="border-top: 1px solid #3A3A3A;">
+        <a
+          href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hola,%20me%20gustar%C3%ADa%20saber%20m%C3%A1s%20sobre%20sus%20servicios`}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn-outline flex-1 justify-center text-xs"
+          onclick="gtag('event','whatsapp_click',{event_category:'Contact',event_label:'ContactSection'});fbq('track','Contact');"
+        >
+          WhatsApp
+        </a>
+        <a
+          href={`mailto:${siteConfig.contact.email}`}
+          class="btn-outline flex-1 justify-center text-xs"
+          onclick="gtag('event','email_click',{event_category:'Contact'});"
+        >
+          Enviar email
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .form-input {
+    width: 100%;
+    background-color: #2B2B2B;
+    border: 1px solid #3A3A3A;
+    border-radius: 0.5rem;
+    padding: 0.75rem 1rem;
+    color: #FFFFFF;
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    outline: none;
+  }
+  .form-input::placeholder { color: rgba(255,255,255,0.3); }
+  .form-input:focus {
+    border-color: rgba(232,168,154,0.6);
+    box-shadow: 0 0 0 3px rgba(232,168,154,0.12);
+  }
+  .form-input.error {
+    border-color: rgba(248,113,113,0.6);
+  }
+  select.form-input option {
+    background-color: #2B2B2B;
+    color: #FFFFFF;
+  }
+</style>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const successEl = document.getElementById('form-success') as HTMLElement;
+  const errorEl = document.getElementById('form-error') as HTMLElement;
+  const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    // Honeypot check
+    const honeypot = form.querySelector<HTMLInputElement>('#website');
+    if (honeypot?.value) return;
+
+    // Basic validation
+    let valid = true;
+    form.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>('[required]').forEach((field) => {
+      if (!field.value.trim()) {
+        field.classList.add('error');
+        valid = false;
+      } else {
+        field.classList.remove('error');
+      }
+    });
+    if (!valid) return;
+
+    // Email validation
+    const emailField = form.querySelector<HTMLInputElement>('#email')!;
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailField.value)) {
+      emailField.classList.add('error');
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Enviando...';
+
+    try {
+      // Collect data - user implements actual submission (Netlify Forms, FormSpree, etc.)
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData.entries());
+
+      // Analytics
+      (window as any).gtag?.('event', 'form_submit', { event_category: 'Contact' });
+      (window as any).fbq?.('track', 'Lead');
+
+      // Show success (replace with real API call)
+      successEl.classList.remove('hidden');
+      errorEl.classList.add('hidden');
+      form.reset();
+    } catch {
+      errorEl.classList.remove('hidden');
+      successEl.classList.add('hidden');
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Enviar mensaje';
+    }
+  });
+
+  // Remove error class on input
+  form.querySelectorAll<HTMLInputElement>('.form-input').forEach((field) => {
+    field.addEventListener('input', () => field.classList.remove('error'));
+  });
+</script>

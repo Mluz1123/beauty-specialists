@@ -1,0 +1,91 @@
+---
+import { services } from '../data/services';
+import { siteConfig } from '../data/config';
+---
+
+<section
+  id="servicios"
+  class="py-24"
+  style="background-color: #1E1E1E;"
+  aria-labelledby="services-heading"
+>
+  <div class="max-w-7xl mx-auto px-6">
+
+    <!-- Heading -->
+    <div class="text-center mb-16 reveal">
+      <span class="section-label" aria-hidden="true">Lo que ofrecemos</span>
+      <h2 id="services-heading" class="section-title">
+        Nuestros Servicios
+      </h2>
+      <div class="section-divider mx-auto"></div>
+      <p class="text-text-muted max-w-xl mx-auto mt-4">
+        Cada servicio está diseñado para realzar tu belleza natural con técnicas profesionales
+        y productos de alta calidad.
+      </p>
+    </div>
+
+    <!-- Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {services.map((service, i) => (
+        <article
+          class={`reveal stagger-${(i % 6) + 1} group relative overflow-hidden rounded-xl cursor-pointer`}
+          style="background-color: #2B2B2B; border: 1px solid #3A3A3A;"
+        >
+          <!-- Image container -->
+          <div class="relative overflow-hidden aspect-[4/3]">
+            <img
+              src={service.image}
+              alt={service.alt}
+              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+              width="600"
+              height="450"
+              loading="lazy"
+            />
+            <!-- Hover overlay -->
+            <div
+              class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-400 flex items-end"
+              style="background: linear-gradient(to top, rgba(26,26,26,0.95) 0%, rgba(26,26,26,0.4) 60%, transparent 100%);"
+            >
+              <div class="p-5 w-full translate-y-4 group-hover:translate-y-0 transition-transform duration-400">
+                <ul class="space-y-1">
+                  {service.features.map((feat) => (
+                    <li class="text-xs text-white/80 flex items-center gap-2">
+                      <span class="w-1 h-1 rounded-full bg-accent flex-shrink-0" aria-hidden="true"></span>
+                      {feat}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Content -->
+          <div class="p-5">
+            <h3
+              style="font-family: var(--font-heading);"
+              class="text-lg font-semibold text-white mb-2 group-hover:text-accent transition-colors duration-200"
+            >
+              {service.title}
+            </h3>
+            <p class="text-sm text-text-muted leading-relaxed">
+              {service.description}
+            </p>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <!-- CTA -->
+    <div class="text-center mt-14 reveal">
+      <a
+        href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hola,%20me%20gustar%C3%ADa%20consultar%20sobre%20los%20servicios`}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn-outline"
+        onclick="gtag('event','whatsapp_click',{event_category:'CTA',event_label:'Services'});"
+      >
+        Consultar disponibilidad
+      </a>
+    </div>
+  </div>
+</section>

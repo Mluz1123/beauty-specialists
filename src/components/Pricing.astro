@@ -1,0 +1,141 @@
+---
+import { pricingPlans, additionalServices } from '../data/pricing';
+import { siteConfig } from '../data/config';
+---
+
+<section
+  id="precios"
+  class="py-24"
+  style="background-color: #1E1E1E;"
+  aria-labelledby="pricing-heading"
+>
+  <div class="max-w-7xl mx-auto px-6">
+
+    <!-- Heading -->
+    <div class="text-center mb-16 reveal">
+      <span class="section-label" aria-hidden="true">Invierte en ti</span>
+      <h2 id="pricing-heading" class="section-title">
+        Planes y Precios
+      </h2>
+      <div class="section-divider mx-auto"></div>
+      <p class="text-text-muted max-w-xl mx-auto mt-4">
+        Elige el plan que se adapta a tu celebración. La fecha se reserva con el 50% de anticipo.
+      </p>
+    </div>
+
+    <!-- Plans -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-20">
+      {pricingPlans.map((plan, i) => (
+        <article
+          class={`reveal stagger-${i + 1} relative rounded-xl p-8 flex flex-col ${plan.isRecommended ? 'ring-2 ring-accent shadow-2xl scale-[1.02]' : ''}`}
+          style={`background-color: ${plan.isRecommended ? '#2B2B2B' : '#242424'}; border: 1px solid ${plan.isRecommended ? '#E8A89A' : '#3A3A3A'};`}
+        >
+          {plan.isRecommended && (
+            <div
+              class="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full text-xs font-semibold uppercase tracking-widest"
+              style="background: linear-gradient(135deg, #E8A89A, #C98070); color: #1A1A1A;"
+            >
+              Recomendado
+            </div>
+          )}
+
+          <!-- Plan header -->
+          <div class="mb-6">
+            <h3
+              style="font-family: var(--font-heading);"
+              class="text-xl font-bold text-white mb-1"
+            >
+              {plan.name}
+            </h3>
+            <p class="text-sm text-text-muted">{plan.subtitle}</p>
+          </div>
+
+          <!-- Price -->
+          <div class="mb-6 pb-6" style="border-bottom: 1px solid #3A3A3A;">
+            <span
+              style="font-family: var(--font-heading);"
+              class="text-4xl font-bold text-accent"
+            >
+              {plan.price}
+            </span>
+            <span class="text-sm text-text-muted ml-2">{plan.duration}</span>
+          </div>
+
+          <!-- Features -->
+          <ul class="space-y-3 mb-8 flex-1">
+            {plan.features.map((feat) => (
+              <li class="flex items-start gap-3 text-sm text-white/80">
+                <svg class="flex-shrink-0 mt-0.5 text-accent" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                  <polyline points="20 6 9 17 4 12"/>
+                </svg>
+                {feat}
+              </li>
+            ))}
+            {plan.notIncluded.map((item) => (
+              <li class="flex items-start gap-3 text-sm text-white/30">
+                <svg class="flex-shrink-0 mt-0.5" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                  <line x1="18" y1="6" x2="6" y2="18"/>
+                  <line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+                {item}
+              </li>
+            ))}
+          </ul>
+
+          <!-- CTA -->
+          <a
+            href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hola,%20me%20interesa%20el%20${encodeURIComponent(plan.name)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            class={plan.isRecommended ? 'btn-primary justify-center' : 'btn-outline justify-center'}
+            onclick={`gtag('event','whatsapp_click',{event_category:'Pricing',event_label:'${plan.id}'});fbq('track','Lead');`}
+          >
+            {plan.ctaLabel}
+          </a>
+        </article>
+      ))}
+    </div>
+
+    <!-- Additional services -->
+    <div class="reveal">
+      <h3
+        style="font-family: var(--font-heading);"
+        class="text-2xl font-semibold text-white text-center mb-8"
+      >
+        Servicios Adicionales
+      </h3>
+      <div
+        class="rounded-xl overflow-hidden"
+        style="border: 1px solid #3A3A3A;"
+      >
+        <table class="w-full text-sm" role="table">
+          <caption class="sr-only">Tabla de servicios adicionales y precios</caption>
+          <thead>
+            <tr style="background-color: #2B2B2B;">
+              <th scope="col" class="text-left px-6 py-4 text-white/60 font-medium tracking-wide uppercase text-xs">Servicio</th>
+              <th scope="col" class="text-right px-6 py-4 text-white/60 font-medium tracking-wide uppercase text-xs">Precio</th>
+            </tr>
+          </thead>
+          <tbody>
+            {additionalServices.map((service, i) => (
+              <tr
+                class="border-t transition-colors duration-150 hover:bg-white/[0.03]"
+                style="border-color: #3A3A3A;"
+              >
+                <td class="px-6 py-4 text-white/80">{service.name}</td>
+                <td class="px-6 py-4 text-right font-semibold text-accent">{service.price}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Terms note -->
+      <p class="text-xs text-text-muted text-center mt-6 max-w-2xl mx-auto">
+        La fecha del evento se reserva con el <strong class="text-white/60">50% del valor del servicio</strong> mediante transferencia bancaria.
+        En caso de cancelación, el abono se guarda como crédito para futuros servicios.
+        Los precios no incluyen domicilio.
+      </p>
+    </div>
+  </div>
+</section>
